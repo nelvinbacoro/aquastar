@@ -17,7 +17,7 @@ $product_qty = $row['qty'];
 }
 $remaining_qty = $product_qty - $c;
 
-if($remaining_qty > 0){
+if($remaining_qty >= 0){
     //edit qty
         $sql = "UPDATE products 
             SET qty=qty-?
