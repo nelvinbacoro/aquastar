@@ -82,6 +82,9 @@ AQR
 <br>
 <br>
 <div class="jumbotron">
+    <?php if(isset($_SESSION['qty_error'])): ?>
+        <div class="alert alert-danger" role="alert"><?php echo $_SESSION['qty_error']; ?></div>
+    <?php unset($_SESSION['qty_error']); endif; ?>
 <form action="incoming.php" method="post" >
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
