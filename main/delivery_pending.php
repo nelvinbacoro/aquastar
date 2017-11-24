@@ -1,4 +1,19 @@
-<?php include('../connect.php'); ?>
+<?php 
+    include('../connect.php'); 
+
+    $query = "SELECT * FROM settings";
+
+    $result = $db->prepare($query);
+    $result->bindParam(':a', $d1);
+    $result->bindParam(':b', $d2);
+    $result->execute();
+    $rs = $result->fetchAll(PDO::FETCH_ASSOC);
+    $settings = array();
+    foreach ($rs as $key => $value) {
+        $settings[$value['name']] = $value['value'];
+    }
+
+?>
 <html>
 <head>
 <title>
@@ -106,7 +121,7 @@ Deliveries
 			<td style="width:250px;"><?php echo $row['location']; ?></td>
 			
 			<!-- <td style="text-align:right;"><?php echo number_format($row['free_meters'] / 1000, 2); ?> km</td>-->
-			 <td style="text-align:right;"><?php echo number_format($row['meters'] / 1000, 2); ?> km</td>
+			<td style="text-align:right;"><?php echo number_format($row['meters'] / 1000, 2); ?> km</td> 
 			<td style="text-align:right;"><?php
 			echo number_format($row['fee'], 2);
 			?></td>
@@ -129,7 +144,7 @@ Deliveries
 
 <script>
     var deliveryLatLng = {};
-    var freeKm = 1000; // meters
+    var freeKm = <?php echo ($settings['free_distance']) ? $settings['free_distance'] : 0;  ?>; // meters
     var directionsService = null;
     var directionsDisplay = null;
 
@@ -251,7 +266,7 @@ Deliveries
 
                     var km = totalDistance/1000;
                     var excess = Math.floor(km - (freeKm/1000));console.log(excess);
-                    var rate = 30; // 30php per excess km
+                    var rate = <?php echo ($settings['delivery_rate']) ? $settings['delivery_rate'] : 0;  ?>; // 30php per excess km
 
                     var deliveryFee = (excess < 0) ? 0 : excess * rate;
                 	console.log(km, deliveryFee);

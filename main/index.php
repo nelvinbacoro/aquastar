@@ -35,7 +35,7 @@ h4 {
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="sass/components/_buttons.scss"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="sass/components/_icons-material-design.scss"  media="screen,projection"/>
@@ -45,6 +45,29 @@ h4 {
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
+<style>
+	.menu{
+		    background: url(img/m.jpg) no-repeat;
+		    width: 200px;
+		    height: 200px;
+		    float: left;
+		    font-size: 32px;
+		    color: #fff;
+		    text-align: center;
+		    padding: 40px 0px;
+		    text-decoration: none;
+	}
+
+	.menu:hover, .menu:active{
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.menu i{
+		font-size: 66px;
+		display: block;
+	}
+</style>
 <script type="text/javascript">
   jQuery(document).ready(function($) {
     $('a[rel*=facebox]').facebox({
@@ -87,8 +110,6 @@ $finalcode='AS-'.createRandomPassword();
 </nav>
 
 <br>
-<br>
-<br>
 
 <div class="container">
 <?php
@@ -99,19 +120,17 @@ if($position=='Cashier') {
 <br>
 <center>
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><img src="trans.jpg" style="width: 300px; height: 300px" /></a>
-<a href="delivery_pending.php"><img src="delivery.jpg" style="width: 300px; height: 300px" /></a>
 </center>
 <?php
 }
 if($position=='admin') {
 ?>
-
-	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><img src="trans.jpg" style="width: 220px; height: 300px" /></a>
-	<a href="products.php"><img src="pro.jpg" style="width: 220px; height: 300px" /></a>
-	<a href="cus-new.php"><img src="custo.jpg" style="width: 230px; height: 300px" /></a>
-	<a href="salesreport.php?d1=0&d2=0"><img src="repo.jpg" style="width: 220px; height: 300px" /></a>
-	<a href="delivery_pending.php"><img src="delivery.jpg" style="width: 220px; height: 300px" /></a>
-
+	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><img src="trans.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="products.php"><img src="pro.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="cus-new.php"><img src="custo.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="salesreport.php?d1=0&d2=0"><img src="repo.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="delivery_pending.php"><img src="delivery.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="settings.php" class="menu"><i class="fa fa-gear"></i>Settings</a>
 <?php
 }
 ?>
