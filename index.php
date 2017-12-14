@@ -44,9 +44,10 @@ AQR
 <body>
 <nav>
 <div class="nav-wrapper">
-<center>AQUASTAR</center>
-<a rel="facebox" href="select.php"></a>
-<a href="../index.php" style="float: right"></a>
+<center>
+	<a rel="facebox" href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
+</center>
+
 </div>
 </nav>
 <br>

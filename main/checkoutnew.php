@@ -137,7 +137,7 @@ if($asas=='credit') {
 <?php
 }
 if($asas=='cash') {
-?><input type="text" name="cash" placeholder="Cash" style="text-align:right;width: 100%; padding: 5px; margin-bottom: 15px;" autocomplete="off" required="required" /><br>
+?><input type="number" name="cash" placeholder="Cash" style="text-align:left;width: 100%; padding: 5px; margin-bottom: 15px;" autocomplete="off" required="required" /><br>
 <?php
 }
 ?>

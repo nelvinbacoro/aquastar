@@ -23,7 +23,7 @@ First Name<br><input type="text" name="Fname" value="<?php echo $row['customer_F
 <br>
 Last Name<br><input type="text" name="name" value="<?php echo $row['customer_name']; ?>" id="fs" /><br>
 <br>
-Present Address<br><input type="text" name="address" value="<?php echo $row['address']; ?>" id="fs" /><br>
+Permanent Address<br><input type="text" name="address" value="<?php echo $row['address']; ?>" id="fs" /><br>
 <br>
 Billing Address<br><input type="text" name="address2" value="<?php echo $row['address2']; ?>" id="fs" /><br>
 <br>

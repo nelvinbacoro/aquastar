@@ -36,7 +36,7 @@ body {
 <nav>
 <div class="nav-wrapper">
 <center>
-<a rel="" href="#"><img src="logo.png" style="width:63px; height:63px" /></a>
+	<a rel="facebox" href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 <a href="../index.php"></a>
 </div>
@@ -62,7 +62,7 @@ body {
 			
 			<th> Name </th>
 			
-			<th>Present Address </th>
+			<th>Permanent Address </th>
 
 			<th>Billing Address </th>
 			

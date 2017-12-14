@@ -102,8 +102,8 @@ AQR
 	?>
 </select>
 <input type="text" name="qty" value="" placeholder="Qty" autocomplete="off" style="width: 68px; padding-top: 6px; padding-bottom: 6px; margin-right: 4px;" />
-<input type="text" name="discount" value="0" autocomplete="off" style="width: 68px; padding-top: 6px; padding-bottom: 6px; margin-right: 4px;" />
-<input class="btn btn-primary btn-sm-2x" type="submit" value="save" style="width: 123px;" />
+<input type="text" name="discount" value="" placeholder="Discount" autocomplete="off" style="width: 68px; padding-top: 6px; padding-bottom: 6px; margin-right: 4px;" />
+<input class="btn btn-primary btn-sm-2x" type="submit" value="Save" style="width: 123px;" />
 </form>
 <table id="resultTable" data-responsive="table">
 	<thead>

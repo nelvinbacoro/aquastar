@@ -115,7 +115,7 @@ h4 {
 <nav class="navbar navbar-default">
 <div class="nav-wrapper">
 <center>
-<a href="../index.php">AQUASTAR</a>
+	<a rel="facebox" href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 </div>
 </nav>

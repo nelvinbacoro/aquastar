@@ -13,7 +13,7 @@ First Name<br><input type="text" name="Fname" id="fs" /><br>
 Last Name<br><input type="text" name="name" id="fs" /><br>
 <br>
 
-Present Address<br><input type="text" name="address" id="fs" /><br>
+Permanent Address<br><input type="text" name="address" id="fs" /><br>
 <br>
 
 Billing Address<br><input type="text" name="address2" id="fs" /><br>

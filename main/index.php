@@ -103,12 +103,14 @@ $finalcode='AS-'.createRandomPassword();
 <nav>
 <div class="nav-wrapper">
 <center>
-<p>AQUASTAR</p>
+	<a rel="facebox" href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 <a href="../index.php"></a>
 </div>
 </nav>
 
+<br>
+<br>
 <br>
 
 <div class="container">
@@ -120,17 +122,21 @@ if($position=='Cashier') {
 <br>
 <center>
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><img src="trans.jpg" style="width: 300px; height: 300px" /></a>
+<a href="delivery_pending.php"><img src="delive.jpg" style="width: 300px; height: 300px" /></a>
 </center>
 <?php
 }
 if($position=='admin') {
 ?>
+<center>
 	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><img src="trans.jpg" style="width: 200px; height: 200px" /></a>
 	<a href="products.php"><img src="pro.jpg" style="width: 200px; height: 200px" /></a>
 	<a href="cus-new.php"><img src="custo.jpg" style="width: 200px; height: 200px" /></a>
+	<br>
 	<a href="salesreport.php?d1=0&d2=0"><img src="repo.jpg" style="width: 200px; height: 200px" /></a>
-	<a href="delivery_pending.php"><img src="delivery.jpg" style="width: 200px; height: 200px" /></a>
-	<a href="settings.php" class="menu"><i class="fa fa-gear"></i>Settings</a>
+	<a href="delivery_pending.php"><img src="delive.jpg" style="width: 200px; height: 200px" /></a>
+	<a href="settings.php" class=""><img src="set.jpg" style="width: 200px; height: 200px" /></a>
+</center>
 <?php
 }
 ?>

@@ -16,12 +16,12 @@
 <form method="post" action="checklogin.php">
 <div id="fs">
     <label for="username" id="fs1">User Name</label> 
-    <input type="text" size="25" name="username" id="fs"/> 
+    <input type="text" size="20" style="font-size: 30px; text-align: center" name="username" id="fs"/>
 </div> 
 
 <div class="text"> 
     <label for="password" id="fs1">Password</label> 
-    <input type="password" size="25" name="password" id="fs"/> 
+    <input type="password" size="20" style="font-size: 30px; text-align: center" name="password" id="fs"/>
 </div> 
 
 <div > 

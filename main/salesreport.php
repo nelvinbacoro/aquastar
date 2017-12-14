@@ -54,17 +54,17 @@ function Clickheretoprint()
 <nav>
 <div class="nav-wrapper">
 <center>
-<a rel="facebox" href="select.php"><img src="logo.png" style="width:63px; height:63px" /></a>
+	<a rel="facebox" href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 <a href="../index.php"></a>
 </div>
 </nav>
 <br>
 <div class="container">
-<a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a>
+<a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a> <a rel="facebox" href="productmng2.php" class="btn btn-default" style="float: right;" >delete sales report</a>
 <br>
 <br>
-<a rel="facebox" href="productmng2.php" class="btn btn-default" style="float: right;" >delete sales report</a>
+
 <a href="brwreport.php" class="btn btn-default" style="float: right;" >DISBURSEMENT report</a>
 <a href="collection.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >collection report</a>
 <a href="salesreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;" disabled>sales report</a>
