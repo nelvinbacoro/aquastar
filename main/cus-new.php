@@ -76,11 +76,11 @@ body {
 			<?php
 			
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM customer ORDER BY customer_id DESC");
+				$result = $db->prepare("SELECT * FROM customer ORDER BY status DESC, customer_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
-			<tr class="record">
+			<tr class="record <?php echo ($row['status'] == 0) ? "inactive":""; ?>">
 			
 			<td><?php echo $row['customer_Fname']; ?> <?php echo $row['customer_name']; ?></td>
 			
@@ -92,7 +92,7 @@ body {
 
 			<td><?php echo $row['contact']; ?></td>
 			
-			<td><center><a rel="facebox" href="editcustomer.php?id=<?php echo $row['customer_id']; ?>" class="btn btn-warning btn-xs-2x"> Edit </a> <a href="#" id="<?php echo $row['customer_id']; ?>" class="delbutton" title="Click To Delete">DELETE</a> </center></tr>
+			<td><center><a rel="facebox" href="editcustomer.php?id=<?php echo $row['customer_id']; ?>" class="btn btn-warning btn-xs-2x"> Edit </a> <!--<a href="#" id="<?php /*echo $row['customer_id']; */?>" class="delbutton" title="Click To Delete">DELETE</a>--> </center></tr>
 			<?php
 				}
 			?>

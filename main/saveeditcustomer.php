@@ -11,12 +11,13 @@ $g = $_POST['address2'];
 $d = $_POST['contact'];
 $e = $_POST['memno'];
 $f = $_POST['order_qty'];
+$s = $_POST['status'];
 // query
 $sql = "UPDATE customer 
-        SET customer_Fname=?, customer_name=?, address=?, address2=?, contact=?, membership_number=?, order_qty=?
+        SET customer_Fname=?, customer_name=?, address=?, address2=?, contact=?, membership_number=?, order_qty=?, status=?
 		WHERE customer_id=?";
 $q = $db->prepare($sql);
-$q->execute(array($a,$b,$c,$g,$d,$e,$f,$id));
+$q->execute(array($a,$b,$c,$g,$d,$e,$f,$s,$id));
 header("location: cus-new.php");
 
 ?>

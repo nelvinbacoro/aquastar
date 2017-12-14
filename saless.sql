@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-14 12:42:39
+Date: 2017-12-14 13:25:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,20 +68,21 @@ CREATE TABLE `customer` (
   `address` varchar(100) NOT NULL,
   `address2` varchar(255) DEFAULT NULL,
   `contact` varchar(100) NOT NULL,
-  `membership_number` varchar(100) NOT NULL,
-  `order_qty` int(100) NOT NULL,
+  `membership_number` varchar(100) DEFAULT NULL,
+  `order_qty` int(100) DEFAULT NULL,
   `cdate` date NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
-INSERT INTO `customer` VALUES ('2', 'Nelvin Bacoro', '', 'binugao toril, D.C.', null, '09480440325', '', '0', '0000-00-00');
-INSERT INTO `customer` VALUES ('5', 'Sheena Mae Aragon', '', 'toril, davao city', null, '093434234234', '', '0', '0000-00-00');
-INSERT INTO `customer` VALUES ('6', 'Toni Fowler (breezy)', '', 'manila, tarlac', null, '334343434', '', '0', '0000-00-00');
-INSERT INTO `customer` VALUES ('7', 'Christian Alfred Jagape', '', 'Astorga, bay bay', null, '983837382', '', '0', '0000-00-00');
-INSERT INTO `customer` VALUES ('8', 'miano', 'michelle', 'nabutas, manila city', null, '987979', '', '0', '0000-00-00');
+INSERT INTO `customer` VALUES ('2', 'Nelvin Bacoro', '', 'binugao toril, D.C.', null, '09480440325', '', '0', '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('5', 'Sheena Mae Aragon', '', 'toril, davao city', null, '093434234234', '', '0', '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('6', 'Toni Fowler (breezy)', '', 'manila, tarlac', null, '334343434', '', '0', '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('7', 'Christian Alfred Jagape', '', 'Astorga, bay bay', '', '983837382', null, null, '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('8', 'miano', 'michelle', 'nabutas, manila city', null, '987979', '', '0', '0000-00-00', '0');
 
 -- ----------------------------
 -- Table structure for deliveries
@@ -236,7 +237,7 @@ CREATE TABLE `settings` (
 -- ----------------------------
 INSERT INTO `settings` VALUES ('1', 'site_name', 'Site Name', 'AQR', '0');
 INSERT INTO `settings` VALUES ('2', 'free_distance', 'Free Distance', '1000', '0');
-INSERT INTO `settings` VALUES ('3', 'delivery_rate', 'Delivery Rate', '10', '0');
+INSERT INTO `settings` VALUES ('3', 'delivery_rate', 'Delivery Rate', '10.00', '0');
 INSERT INTO `settings` VALUES ('4', 'office_location_lat', 'Office Location Latitude', '7.01506289', '0');
 INSERT INTO `settings` VALUES ('5', 'office_location_lng', 'Office Location Longitude', '125.49776226', '0');
 

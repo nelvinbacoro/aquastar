@@ -106,7 +106,7 @@ Deliveries
 		
 			<?php
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM deliveries LEFT JOIN sales ON sales.transaction_id = deliveries.sales_id WHERE status = 0");
+				$result = $db->prepare("SELECT * FROM deliveries LEFT JOIN sales ON sales.transaction_id = deliveries.sales_id WHERE status = 0  ORDER BY deliveries.id ");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>

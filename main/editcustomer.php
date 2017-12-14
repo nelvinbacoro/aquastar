@@ -28,6 +28,11 @@ Permanent Address<br><input type="text" name="address" value="<?php echo $row['a
 Billing Address<br><input type="text" name="address2" value="<?php echo $row['address2']; ?>" id="fs" /><br>
 <br>
 Contact<br><input type="number" name="contact" value="<?php echo $row['contact']; ?>" id="fs" /><br>
+    <br>
+    Status<br><select name="status" style="display:block;">
+        <option value="0" <?php echo ($row['status']==0) ? "selected":""; ?>>Inactive</option>
+        <option value="1" <?php echo ($row['status']==1) ? "selected":""; ?>>Active</option>
+    </select><br>
 <br>
 <span>&nbsp;</span><input id="btn" type="submit" value="save" />
 </div>

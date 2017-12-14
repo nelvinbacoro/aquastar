@@ -28,6 +28,12 @@
 	padding: 10px 14px;
 	border-top: 1px solid #999999;
 }
+
+#resultTable tbody tr.inactive td{
+    background-color: #E2E2E2;
+    opacity: 0.5;
+}
+
 .delbutton-danger {
     color: #fff;
     background-color: #d9534f;
