@@ -7,8 +7,13 @@
 
     	    $val = $value;
 
-    	    if($key == "office_location"){
-    	        $val .= "|" . $_POST['office_lat'] . "|" . $_POST['office_lng'];
+    	    switch($key){
+                case "office_location":
+                    $val .= "|" . $_POST['office_lat'] . "|" . $_POST['office_lng'];
+                    break;
+                case "delivery_rate":
+                    $val = number_format($val, 2);
+                    break;
             }
 
     		$sql = "UPDATE settings SET value = '$val' WHERE name='$key'";
