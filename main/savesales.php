@@ -2,6 +2,19 @@
 session_start(); 
 
 include('../connect.php');
+
+$query = "SELECT * FROM settings";
+
+$result = $db->prepare($query);
+$result->execute();
+$rs = $result->fetchAll(PDO::FETCH_ASSOC);
+$settings = array();
+foreach ($rs as $key => $value) {
+    $settings[$value['name']] = $value['value'];
+}
+
+
+
 $a = $_POST['invoice'];
 $b = $_POST['cashier'];
 $c = $_POST['date'];
@@ -32,14 +45,15 @@ $sales_id = $db->lastInsertId();
 
 if($_POST['delivery_location_name'] != ""){
 
-	$olat = "7.0147022";
-	$olng = "125.4973114";
+	$olat = $settings['office_location_lat'];
+	$olng = $settings['office_location_lng'];
 
 	$loc = $_POST['delivery_location_name'];
 	$lat = $_POST['delivery_lat'];
 	$lng = $_POST['delivery_lng'];
 	$distance = 0;
 	$time = 0;
+	echo "http://maps.googleapis.com/maps/api/distancematrix/json?origins=$olat,$olng&destinations=$lat,$lng&language=en-EN&sensor=false";
 
 	$data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$olat,$olng&destinations=$lat,$lng&language=en-EN&sensor=false");
 	$data = json_decode($data);
@@ -48,16 +62,14 @@ if($_POST['delivery_location_name'] != ""){
 	    $time += $road->duration->value;
 	    $distance += $road->distance->value;
 	}
+	
 
-	var_dump(intval($sales_id));
-	var_dump($loc);
-	var_dump($lat);
-	var_dump($lng);
-	var_dump($distance);
 	$sql = "INSERT INTO deliveries (sales_id, location, lat, lng, meters, free_meters, rate, fee) values ( :sales_id, :location, :lat, :lng, :meters, :free_meters, :rate, :fee)";
 	$q = $db->prepare($sql);
-	$free_meters = 1000; //meter unit
-	$rate = 30; // 30php per exceeding km
+	$free_meters = $settings['free_distance']; //meter unit
+	$rate = $settings['delivery_rate']; // 30php per exceeding km
+
+    $fee = floor( ($distance - $free_meters) / 1000) * $rate;
 
 	$q->execute(
 		array(
@@ -68,13 +80,13 @@ if($_POST['delivery_location_name'] != ""){
 			':meters'	=> $distance,
 			':free_meters'	=> $free_meters,
 			':rate'		=> $rate,
-			':fee'	=> floor( ($distance - $free_meters) / 1000) * $rate
+			':fee'	=>  ($fee < 0) ? 0 : $fee
 		)
 	);
 }
 
 
-header("location: preview.php?invoice=$a");
+//header("location: preview.php?invoice=$a");
 exit();
 
 ?>

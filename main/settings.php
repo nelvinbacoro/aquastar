@@ -5,7 +5,13 @@
     if(isset($_POST['update_settings'])){
     	foreach ($_POST['settings'] as $key => $value) {
 
-    		$sql = "UPDATE settings SET value = '$value' WHERE name='$key'";
+    	    $val = $value;
+
+    	    if($key == "office_location"){
+    	        $val .= "|" . $_POST['office_lat'] . "|" . $_POST['office_lng'];
+            }
+
+    		$sql = "UPDATE settings SET value = '$val' WHERE name='$key'";
 		    $result = $db->prepare($sql);
     		$result->execute();
     	}
@@ -16,8 +22,6 @@
     $query = "SELECT * FROM settings";
 
     $result = $db->prepare($query);
-    $result->bindParam(':a', $d1);
-    $result->bindParam(':b', $d2);
     $result->execute();
     $rs = $result->fetchAll(PDO::FETCH_ASSOC);
     $settings = array();
@@ -119,7 +123,6 @@ h4 {
 </center>
 </div>
 </nav>
-
 <div class="container">
 
 <br>
@@ -131,13 +134,30 @@ h4 {
 		<div class="panel panel-primary">
 			<div class="panel-heading"><i class="fa fa-gear"></i> Site Settings</div>
 			<div class="panel-body">
-				<?php foreach($rs as $key=>$value): ?>
+				<?php foreach($rs as $key=>$value):
+                    $lat="";
+				    $lng="";
+				    if($value['name'] == "office_location"){
+				        $v = explode("|", $value['value']);
+				        $lat = $v[1];
+				        $lng = $v[2];
+				        $value['value'] = $v[0];
+                    }
+				 ?>
 				  <div class="form-group">
 				    <label for="inputEmail3" class="col-sm-3 control-label"><?php echo $value['label']; ?></label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control text-right" id="<?php echo $value['name']; ?>" name="settings[<?php echo $value['name']; ?>]" placeholder="Site Name" 
+				      <input type="text" class="form-control text-right" id="<?php echo $value['name']; ?>" name="settings[<?php echo $value['name']; ?>]" placeholder="<?php echo $value['label']; ?>"
 				      	value="<?php echo $value['value']; ?>" />
 				    </div>
+                      <?php if($value['name'] == "office_location_lng"): ?>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-3 control-label">&nbsp;</label>
+                        <div class="col-sm-8 text-right">
+                            Get Lat and Lng Coordinates <a href="https://www.latlong.net/" target="_blank">Here </a>
+                        </div>
+                      <?php endif; ?>
 				  </div>
 				<?php endforeach; ?>
 
@@ -150,4 +170,43 @@ h4 {
 	</form>
 </div>
 
+<script>
+
+    function initMap() {
+
+        var input = document.getElementById('office_location');
+        var lat = document.getElementById('office_lat');
+        var lng = document.getElementById('office_lng');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            lat.value = place.geometry.location.lat();
+            lng.value = place.geometry.location.lng();
+
+        });
+
+
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bT-zX0RPq99vBKgPTOEl-haME-YM1Ow&callback=initMap&sensor=false&libraries=places">
+</script>
 </html>

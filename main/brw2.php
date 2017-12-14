@@ -79,6 +79,7 @@ body {
 			<th> Date Borrowed </th>
 			
 			<th> Date Returned </th>
+            <th> Action </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -86,7 +87,9 @@ body {
 			<?php
 			
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM borrow ORDER BY borrow_id DESC");
+				$result = $db->prepare("SELECT * FROM borrow b
+                                        LEFT JOIN customer c ON c.customer_id = b.customer_id
+                                        ORDER BY daeR ASC, borrow_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
@@ -98,7 +101,11 @@ body {
 			
 			<td><?php echo $row['gal_qty']; ?></td>
 			<td><?php echo $row['dateB']; ?></td>
-			<td><?php echo $row['daeR']; ?></td></tr>
+			<td><?php echo $row['daeR']; ?></td>
+
+                <td>
+                    <a class="btn btn-info btn-sm" rel="facebox" href="brw.php?id=<?php echo $row['borrow_id']; ?>" style="float: none;">Edit</a></td>
+            </tr>
 			<?php
 				}
 			?>

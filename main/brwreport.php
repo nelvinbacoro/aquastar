@@ -74,7 +74,9 @@ body {
 			<?php
 			
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM borrow ORDER BY borrow_id DESC");
+                $result = $db->prepare("SELECT * FROM borrow b
+                                            LEFT JOIN customer c ON c.customer_id = b.customer_id
+                                            ORDER BY daeR ASC, borrow_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>

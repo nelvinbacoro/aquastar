@@ -146,8 +146,7 @@ if($asas=='cash') {
 </form>
 
 <script>
-    var deliverryLatLng = {};
-    var freeKm = 1000; // meters
+    
     function initMap() {
 
         var input = document.getElementById('delivery_location');
