@@ -53,7 +53,6 @@ if($_POST['delivery_location_name'] != ""){
 	$lng = $_POST['delivery_lng'];
 	$distance = 0;
 	$time = 0;
-	echo "http://maps.googleapis.com/maps/api/distancematrix/json?origins=$olat,$olng&destinations=$lat,$lng&language=en-EN&sensor=false";
 
 	$data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$olat,$olng&destinations=$lat,$lng&language=en-EN&sensor=false");
 	$data = json_decode($data);
@@ -86,7 +85,7 @@ if($_POST['delivery_location_name'] != ""){
 }
 
 
-//header("location: preview.php?invoice=$a");
+header("location: preview.php?invoice=$a");
 exit();
 
 ?>
