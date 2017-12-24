@@ -162,7 +162,7 @@ Deliveries
                 strokeColor: "orange"
             }
         });
-        var myLatLng = {lat: 7.0147022, lng: 125.4973114}; //marker in toril area(midpoint)
+        var myLatLng = {lat: <?php echo ($settings['office_location_lat']) ? $settings['office_location_lat'] : 0;  ?>, lng: <?php echo ($settings['office_location_lng']) ? $settings['office_location_lng'] : 0;  ?>}; //marker in toril area(midpoint)
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
