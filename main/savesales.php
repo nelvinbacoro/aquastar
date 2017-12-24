@@ -63,7 +63,7 @@ if($_POST['delivery_location_name'] != ""){
 	}
 	
 
-	$sql = "INSERT INTO deliveries (sales_id, location, lat, lng, meters, free_meters, rate, fee) values ( :sales_id, :location, :lat, :lng, :meters, :free_meters, :rate, :fee)";
+	$sql = "INSERT INTO deliveries (sales_id, location, lat, lng, office_lat, office_lng, meters, free_meters, rate, fee) values ( :sales_id, :location, :lat, :lng, :olat, :olng, :meters, :free_meters, :rate, :fee)";
 	$q = $db->prepare($sql);
 	$free_meters = $settings['free_distance']; //meter unit
 	$rate = $settings['delivery_rate']; // 30php per exceeding km
@@ -76,6 +76,8 @@ if($_POST['delivery_location_name'] != ""){
 			':location'	=> $loc,
 			':lat'		=> $lat,
 			':lng'		=> $lng,
+            ':olat'		=> $olat,
+            ':olng'		=> $olng,
 			':meters'	=> $distance,
 			':free_meters'	=> $free_meters,
 			':rate'		=> $rate,

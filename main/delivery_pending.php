@@ -128,7 +128,7 @@ Deliveries
 			
 			
 			<td style="text-align:right;"><?php echo ($row['status'] == 0) ? "Processing..." : $row['status']; ?></td>
-			<td><a target="_window" href="javascript:setDeliveryLatLng(<?php echo $row['lat']; ?>,<?php echo $row['lng']; ?>)">View Map</a></td>
+			<td><a target="_window" href="javascript:setDeliveryLatLng(<?php echo $row['lat']; ?>,<?php echo $row['lng']; ?>, <?php echo $row['free_meters'] ?>, <?php echo $row['office_lat'] ?>, <?php echo $row['office_lng'] ?>)">View Map</a></td>
 			</tr>
 			<?php
 				}
@@ -144,12 +144,15 @@ Deliveries
 
 <script>
     var deliveryLatLng = {};
-    var freeKm = <?php echo ($settings['free_distance']) ? $settings['free_distance'] : 0;  ?>; // meters
+    freeKm = <?php echo ($settings['free_distance']) ? $settings['free_distance'] : 0;  ?>; // meters
+    oLat = <?php echo ($settings['office_location_lat']) ? $settings['office_location_lat'] : 0;  ?>; // meters
+    oLng = <?php echo ($settings['office_location_lng']) ? $settings['office_location_lng'] : 0;  ?>; // meters
     var directionsService = null;
     var directionsDisplay = null;
 
-    function setDeliveryLatLng(lat, lng){
-    	deliveryLatLng = {lat: lat, lng: lng};
+    function setDeliveryLatLng(lat, lng, km, olat, olng){
+    	deliveryLatLng = {lat: lat, lng: lng, freeKm: km, oLat: olat, oLng: olng};
+        setMap(olat, olng, km);
         calculateAndDisplayRoute();
     }
 
@@ -162,7 +165,15 @@ Deliveries
                 strokeColor: "orange"
             }
         });
-        var myLatLng = {lat: <?php echo ($settings['office_location_lat']) ? $settings['office_location_lat'] : 0;  ?>, lng: <?php echo ($settings['office_location_lng']) ? $settings['office_location_lng'] : 0;  ?>}; //marker in toril area(midpoint)
+
+        setMap(oLat, oLng, freeKm);
+        calculateAndDisplayRoute();
+
+    }
+
+    function setMap(oLat, oLng, km){
+
+        var myLatLng = {lat: oLat, lng: oLng}; //marker in toril area(midpoint)
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
@@ -172,13 +183,13 @@ Deliveries
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: 'Hello World!'
+            title: 'Aquastar Delivery!'
         });
 
         // Add circle overlay and bind to marker
         var circle = new google.maps.Circle({
             map: map,
-            radius: freeKm,    // 10 miles in metres
+            radius: km,    // 10 miles in metres
             strokeColor: '#05a239',
             strokeOpacity: 0.8,
             fillColor: '#36aa27',
@@ -191,12 +202,6 @@ Deliveries
         var types = document.getElementById('type-selector');
         var strictBounds = document.getElementById('strict-bounds-selector');
 
-        //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-        // Bind the map's bounds (viewport) property to the autocomplete object,
-        // so that the autocomplete requests use the current map bounds for the
-        // bounds option in the request.
-
         var infowindow = new google.maps.InfoWindow();
         var infowindowContent = document.getElementById('infowindow-content');
         infowindow.setContent(infowindowContent);
@@ -208,13 +213,12 @@ Deliveries
 
 
         directionsDisplay.setMap(map);
-        calculateAndDisplayRoute();
-
     }
 
     function calculateAndDisplayRoute() {
 
-            var start = new google.maps.LatLng(7.0147022,125.4973114);
+
+            var start = new google.maps.LatLng(deliveryLatLng.oLat,deliveryLatLng.oLng);
             var end = new google.maps.LatLng(deliveryLatLng.lat,deliveryLatLng.lng);
             var request = {
                 origin: start,
@@ -265,11 +269,10 @@ Deliveries
                     }
 
                     var km = totalDistance/1000;
-                    var excess = Math.floor(km - (freeKm/1000));console.log(excess);
+                    var excess = Math.floor(km - (freeKm/1000));
                     var rate = <?php echo ($settings['delivery_rate']) ? $settings['delivery_rate'] : 0;  ?>; // 30php per excess km
 
                     var deliveryFee = (excess < 0) ? 0 : excess * rate;
-                	console.log(km, deliveryFee);
                 }
 
             });
