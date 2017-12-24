@@ -1,7 +1,7 @@
 <?php
 	
-    include('../connect.php'); 
-
+    include('../connect.php');
+    $success = "";
     if(isset($_POST['update_settings'])){
     	foreach ($_POST['settings'] as $key => $value) {
 
@@ -19,6 +19,7 @@
     		$sql = "UPDATE settings SET value = '$val' WHERE name='$key'";
 		    $result = $db->prepare($sql);
     		$result->execute();
+            $success = "<div class=\"alert alert-success\"><strong>Success!</strong> Settings has been updated.</div>";
     	}
 
     }
@@ -135,6 +136,7 @@ h4 {
 
 <br>
 <br>
+    <?php echo $success; ?>
 	<form class="form-horizontal" method="POST">
 		<div class="panel panel-primary">
 			<div class="panel-heading"><i class="fa fa-gear"></i> Site Settings</div>
