@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+//Start session test commit
     include('../connect.php'); 
 
     $query = "SELECT * FROM settings";
@@ -68,6 +70,7 @@ body {
 <br>
 <div class="container">
 <a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a>
+    <a href="delivery.php" class="btn btn-success btn-xs-2x" style="float: right;">Delivery Calculator</a>
 <br>
 <br>
 <div class="jumbotron">
