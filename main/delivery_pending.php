@@ -70,7 +70,7 @@ body {
 <br>
 <div class="container">
 <a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a>
-    <a href="delivery.php" class="btn btn-success btn-xs-2x" style="float: right;">Delivery Calculator</a>
+<a href="javascript:window.open('delivery.php','','width=900,height=550')" class="btn btn-success btn-xs-2x" style="float: right;">Delivery Calculator</a>
 <br>
 <br>
 <div class="jumbotron">

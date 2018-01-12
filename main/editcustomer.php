@@ -19,6 +19,7 @@
 <form action="saveeditcustomer.php" method="post">
 <div id="ac">
 <input type="hidden" name="memi" value="<?php echo $id; ?>" />
+    <input type="hidden" name="page" value="<?php echo isset($_GET['active']) ? 'active':'inactive'; ?>" />
 First Name<br><input type="text" name="Fname" value="<?php echo $row['customer_Fname']; ?>" id="fs" /><br>
 <br>
 Last Name<br><input type="text" name="name" value="<?php echo $row['customer_name']; ?>" id="fs" /><br>

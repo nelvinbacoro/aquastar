@@ -52,6 +52,7 @@ body {
 <br>
 <br>
 <a href="cus-credit.php" class="btn btn-default" style="float: right;" disabled>credit list</a>
+    <a href="cus-inactive.php" class="btn btn-default" style="float: right;">Inactive Customer</a>
 <a href="cus-new.php" class="btn btn-default" style="float: right;" >customer list</a>
 <div class="jumbotron">
 <input style="width:812px" type="text" name="filter" value="" id="filter" placeholder="Search name..." autocomplete="off" />

@@ -1,7 +1,13 @@
+<?php
+
+$d1=isset($_GET['d1']) ? $_GET['d1']: 0;
+$d2=isset($_GET['d2']) ? $_GET['d2']: 0;
+?>
+
 <html>
 <head>
 <title>
-AQR
+AQS
 </title>
 <style>
 body {
@@ -20,6 +26,12 @@ body {
 <link href="../style01.css" media="screen" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="tcal.css" />
 <script type="text/javascript" src="tcal.js"></script>
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="argiepolicarpio.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="src/facebox.js" type="text/javascript"></script>
+
 <script language="javascript">
 function Clickheretoprint()
 { 
@@ -35,6 +47,14 @@ function Clickheretoprint()
    docprint.focus(); 
 }
 </script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('a[rel*=facebox]').facebox({
+      loadingImage : 'src/loading.gif',
+      closeImage   : 'src/closelabel.png'
+    })
+  })
+</script>
 </head>
 <body>
 <nav>
@@ -47,58 +67,71 @@ function Clickheretoprint()
 </nav>
 <br>
 <div class="container">
-<a class="btn btn-success btn-xs-2x" href="index.php" style="float: none;">Back</a>
+<a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a> <a rel="facebox" href="productmng2.php" class="btn btn-default" style="float: right;" >delete sales report</a>
 <br>
 <br>
+
 <a href="brwreport.php" class="btn btn-default" style="float: right;" >DISBURSEMENT report</a>
-<a href="collection.php?d1=0&d2=0" class="btn btn-default" style="float: right;" disabled>collection report</a>
-    <a href="inventoryreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;">inventory report</a>
-<a href="salesreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >sales report</a>
+<a href="collection.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >collection report</a>
+    <a href="inventoryreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;" disabled>inventory report</a>
+    <a href="salesreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >sales report</a>
 <div class="jumbotron">
-<form action="collection.php" method="get">
-From : <input type="text" name="d1" class="tcal" style="width: 300px" value="" /> 
-To: <input type="text" name="d2" class="tcal" style="width: 300px" value="" /> 
-<input class="btn btn-info" type="submit" value="Search"> <a class="btn btn-default btn-xs-2x" href="javascript:Clickheretoprint()">Print</a>
+<form action="inventoryreport.php" method="get">
+From : <input type="text" name="d1" class="tcal" value="" style="width: 300px" />
+ To: <input type="text" name="d2" class="tcal" value="" style="width: 300px" /> 
+ <input class="btn btn-info" type="submit" value="Search"><a class="btn btn-default btn-xs-2x" href="javascript:Clickheretoprint()">Print</a>
 </form>
+<input style="width:300px" type="text" name="filter" value="" id="filter" placeholder="Search..." autocomplete="off" />
 <div class="content" id="content">
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
-Collection Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['d2'] ?>
+Inventory Report from&nbsp;<?php echo $d1 ?>&nbsp;to&nbsp;<?php echo $d2 ?>
 </div>
+
 <table id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="17%"> Transaction ID </th>
-			<th width="8%"> Date </th>
+			<th> Invoice </th>
 			
-			<th width="20%"> Invoice Number </th>
-			<th width="10%"> Amount </th>
-			<th width="10%"> Remarks </th>
+			<th> Date </th>
+			
+			<th> Product Name </th>
+            <th style="text-align:right;"> Qty </th>
+            <th style="text-align:right;"> Price </th>
+			
+			<th style="text-align:right;"> Amount </th>
+			<th> Remarks </th>
+			
 		</tr>
 	</thead>
 	<tbody>
 		
 			<?php
 				include('../connect.php');
-				$d1=$_GET['d1'];
-				$d2=$_GET['d2'];
-				$result = $db->prepare("SELECT c.transaction_id, c.date, s.name, c.amount, c.remarks  FROM collection c
-                                        LEFT JOIN sales s ON s.invoice_number = c.name
-                                          WHERE c.date BETWEEN :a AND :b");
+				$result = $db->prepare("SELECT * FROM sales s LEFT JOIN sales_order so ON s.invoice_number = so.invoice WHERE date BETWEEN :a AND :b");
 				$result->bindParam(':a', $d1);
 				$result->bindParam(':b', $d2);
 				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
+
+				for($i=0; $row = $result->fetch(); $i++){ 
 			?>
 			<tr class="record">
-			<td>CTI-000<?php echo $row['transaction_id']; ?></td>
+			
+			<td><?php echo $row['invoice']; ?></td>
+			
 			<td><?php echo $row['date']; ?></td>
 			
 			<td><?php echo $row['name']; ?></td>
-			<td><?php
+            <td style="text-align:right;"><?php echo $row['qty']; ?></td>
+            <td style="text-align:right;"><?php echo $row['price']; ?></td>
+			
+			<td style="text-align:right;"><?php
 			$dsdsd=$row['amount'];
 			echo formatMoney($dsdsd, true);
 			?></td>
-			<td><?php echo $row['remarks']; ?></td>
+			
+			<td><?php echo $row['type']; ?></td>
+			
+			
 			</tr>
 			<?php
 				}
@@ -108,7 +141,7 @@ Collection Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_
 	<thead>
 		<tr>
 			<th colspan="3" style="border-top:1px solid #999999"> Total </th>
-			<th colspan="2" style="border-top:1px solid #999999"> 
+			<th colspan="4" style="border-top:1px solid #999999"> 
 			<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -124,9 +157,8 @@ Collection Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_
 					}
 					return $number;
 				}
-				$d1=$_GET['d1'];
-				$d2=$_GET['d2'];
-				$results = $db->prepare("SELECT sum(amount) FROM collection WHERE date BETWEEN :a AND :b");
+				
+				$results = $db->prepare("SELECT sum(amount) FROM sales WHERE date BETWEEN :a AND :b");
 				$results->bindParam(':a', $d1);
 				$results->bindParam(':b', $d2);
 				$results->execute();
@@ -139,10 +171,10 @@ Collection Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_
 		</tr>
 	</thead>
 </table>
-</div>
 <div class="clearfix"></div>
 </div>
 </div>
-</fieldset>
+</div>
+</body>
 </body>
 </html>

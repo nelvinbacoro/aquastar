@@ -18,6 +18,13 @@ $sql = "UPDATE customer
 		WHERE customer_id=?";
 $q = $db->prepare($sql);
 $q->execute(array($a,$b,$c,$g,$d,$e,$f,$s,$id));
-header("location: cus-new.php");
+
+if($_POST['page'] == 'active'){
+    header("location: cus-new.php");
+}
+else{
+    header("location: cus-inactive.php");
+}
+
 
 ?>

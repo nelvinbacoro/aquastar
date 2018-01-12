@@ -50,8 +50,9 @@ body {
 <a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a>
 <br>
 <br>
-<a href="brwreport.php" class="btn btn-default" style="float: right;" disabled>skemberdo report</a>
+<a href="brwreport.php" class="btn btn-default" style="float: right;" disabled>DISBURSEMENT report</a>
 <a href="collection.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >collection report</a>
+    <a href="inventoryreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;">inventory report</a>
 <a href="salesreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;">sales report</a>
 <div class="jumbotron">
 <input style="width:812px" type="text" name="filter" value="" id="filter" placeholder="Search name..." autocomplete="off" />

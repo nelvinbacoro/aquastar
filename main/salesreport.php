@@ -67,6 +67,7 @@ function Clickheretoprint()
 
 <a href="brwreport.php" class="btn btn-default" style="float: right;" >DISBURSEMENT report</a>
 <a href="collection.php?d1=0&d2=0" class="btn btn-default" style="float: right;" >collection report</a>
+<a href="inventoryreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;">inventory report</a>
 <a href="salesreport.php?d1=0&d2=0" class="btn btn-default" style="float: right;" disabled>sales report</a>
 <div class="jumbotron">
 <form action="salesreport.php" method="get">

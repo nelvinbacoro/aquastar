@@ -52,8 +52,8 @@ body {
 <br>
 <br>
 <a href="cus-credit.php" class="btn btn-default" style="float: right;">credit list</a>
-    <a href="cus-inactive.php" class="btn btn-default" style="float: right;">Inactive Customer</a>
-<a href="cus-new.php" class="btn btn-default" style="float: right;" disabled>customer list</a>
+    <a href="cus-inactive.php" class="btn btn-default" style="float: right;" disabled>Inactive Customer</a>
+<a href="cus-new.php" class="btn btn-default" style="float: right;" >customer list</a>
 <div class="jumbotron">
 <input style="width:850px" type="text" name="filter" value="" id="filter" placeholder="Search Customer..." autocomplete="off" />
 <a rel="facebox" href="addcustomer.php" class="btn btn-primary btn-sm-2x">Add Customer</a><br><br>
@@ -77,7 +77,7 @@ body {
 			<?php
 			
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM customer WHERE status=1 ORDER BY status DESC, customer_id DESC");
+				$result = $db->prepare("SELECT * FROM customer WHERE status=0 ORDER BY status DESC, customer_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
@@ -93,7 +93,7 @@ body {
 
 			<td><?php echo $row['contact']; ?></td>
 			
-			<td><center><a rel="facebox" href="editcustomer.php?id=<?php echo $row['customer_id']; ?>&active" class="btn btn-warning btn-xs-2x"> Edit </a> <!--<a href="#" id="<?php /*echo $row['customer_id']; */?>" class="delbutton" title="Click To Delete">DELETE</a>--> </center></tr>
+			<td><center><a rel="facebox" href="editcustomer.php?id=<?php echo $row['customer_id']; ?>&inactive" class="btn btn-warning btn-xs-2x"> Edit </a> <!--<a href="#" id="<?php /*echo $row['customer_id']; */?>" class="delbutton" title="Click To Delete">DELETE</a>--> </center></tr>
 			<?php
 				}
 			?>

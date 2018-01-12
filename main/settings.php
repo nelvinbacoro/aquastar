@@ -170,7 +170,7 @@ h4 {
 
 			</div>
 			<div class="panel-footer">
-				<button type="submit" name="update_settings" class="btn btn-success pull-right">Update</button>
+				<button type="submit" name="update_settings" class="btn btn-success pull-right" onclick="if(confirm('Save settings?')) return true; else return false;">Update</button>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -178,7 +178,6 @@ h4 {
 </div>
 
 <script>
-
     function initMap() {
 
         var input = document.getElementById('office_location');
