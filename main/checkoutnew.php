@@ -116,7 +116,7 @@ background-repeat:no-repeat;
 <select type="text" name="cname" style="width: 100%;padding: 5px;margin:5px 0;" required="required">
 <option value="">--select customer--</option>
 	<?php
-	$result = $db->prepare("SELECT * FROM customer");
+	$result = $db->prepare("SELECT * FROM customer where status='1'");
 		$result->bindParam(':userid', $res);
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
