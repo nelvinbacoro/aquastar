@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-14 13:25:50
+Date: 2018-01-12 16:49:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,13 +49,14 @@ CREATE TABLE `collection` (
   `balance` int(11) NOT NULL,
   `credit` int(20) DEFAULT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of collection
 -- ----------------------------
 INSERT INTO `collection` VALUES ('1', '11/02/2017', 'AS-322230', 'IN-86042422', '200', 'test', '200', null);
 INSERT INTO `collection` VALUES ('2', '11/02/2017', 'AS-322230', 'IN-22322', '500', 'sobra', '-300', null);
+INSERT INTO `collection` VALUES ('3', '01/12/2018', 'AS-0022322', 'IN-7334206', '10', '', '10', null);
 
 -- ----------------------------
 -- Table structure for customer
@@ -78,11 +79,11 @@ CREATE TABLE `customer` (
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
-INSERT INTO `customer` VALUES ('2', 'Nelvin Bacoro', '', 'binugao toril, D.C.', null, '09480440325', '', '0', '0000-00-00', '1');
-INSERT INTO `customer` VALUES ('5', 'Sheena Mae Aragon', '', 'toril, davao city', null, '093434234234', '', '0', '0000-00-00', '1');
-INSERT INTO `customer` VALUES ('6', 'Toni Fowler (breezy)', '', 'manila, tarlac', null, '334343434', '', '0', '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('2', 'Nelvin Bacoro', '', 'binugao toril, D.C.', '', '09480440325', null, null, '0000-00-00', '1');
+INSERT INTO `customer` VALUES ('5', 'Sheena Mae Aragon', '', 'toril, davao city', '', '093434234234', null, null, '0000-00-00', '0');
+INSERT INTO `customer` VALUES ('6', 'Toni Fowler (breezy)', '', 'manila, tarlac', '', '334343434', null, null, '0000-00-00', '0');
 INSERT INTO `customer` VALUES ('7', 'Christian Alfred Jagape', '', 'Astorga, bay bay', '', '983837382', null, null, '0000-00-00', '1');
-INSERT INTO `customer` VALUES ('8', 'miano', 'michelle', 'nabutas, manila city', null, '987979', '', '0', '0000-00-00', '0');
+INSERT INTO `customer` VALUES ('8', 'miano', 'michelle', 'nabutas, manila city', '', '987979', null, null, '0000-00-00', '1');
 
 -- ----------------------------
 -- Table structure for deliveries
@@ -94,17 +95,28 @@ CREATE TABLE `deliveries` (
   `location` varchar(255) DEFAULT NULL,
   `lat` varchar(255) DEFAULT NULL,
   `lng` varchar(255) DEFAULT NULL,
+  `office_lat` varchar(255) DEFAULT NULL,
+  `office_lng` varchar(255) DEFAULT NULL,
   `meters` decimal(11,2) DEFAULT NULL,
   `free_meters` decimal(11,2) DEFAULT NULL,
   `rate` decimal(11,2) DEFAULT NULL,
   `fee` decimal(11,2) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of deliveries
 -- ----------------------------
+INSERT INTO `deliveries` VALUES ('1', '29', 'Bago Gallera Elementary School, Libby Road, Davao City, Davao Region, Philippines', '7.054586499999999', '125.51122239999995', '7.0147022', '125.4973114', '5474.00', '1000.00', '10.00', '40.00', '0');
+INSERT INTO `deliveries` VALUES ('2', '30', 'Bago Gallera Health Center, Davao City, Davao Region, Philippines', '7.054498', '125.51195519999999', '7.0147022', '125.4973114', '7164.00', '3000.00', '30.00', '120.00', '0');
+INSERT INTO `deliveries` VALUES ('4', '33', 'Bago Gallera Elementary School, Libby Road, Davao City, Davao Region, Philippines', '7.054586499999999', '125.51122239999995', '7.013093', '125.490490', '5943.00', '1000.00', '10.00', '40.00', '0');
+INSERT INTO `deliveries` VALUES ('5', '34', 'Bago Gallera Elementary School, Libby Road, Davao City, Davao Region, Philippines', '7.054586499999999', '125.51122239999995', '7.01506289', '125.49776226', '5474.00', '1000.00', '10.00', '40.00', '0');
+INSERT INTO `deliveries` VALUES ('6', '35', 'Bago Gallera Health Center, Davao City, Davao Region, Philippines', '7.054498', '125.51195519999999', '7.01506289', '125.49776226', '7164.00', '2000.00', '30.00', '150.00', '0');
+INSERT INTO `deliveries` VALUES ('7', '36', 'Puan Barangay Health Center, Davao City, Philippines', '7.083198', '125.54497700000002', '7.01506289', '125.49776226', '11351.00', '2000.00', '20.00', '180.00', '0');
+INSERT INTO `deliveries` VALUES ('8', '37', 'BINUGAO CENTRAL ELEMENTARY SCHOOL, Philippines', '6.974461', '125.47827600000005', '7.01506289', '125.49776226', '5668.00', '2000.00', '20.00', '60.00', '0');
+INSERT INTO `deliveries` VALUES ('9', '38', 'Bago Gallera Elementary School, Libby Road, Davao City, Davao Region, Philippines', '7.054586499999999', '125.51122239999995', '6.973568', '125.475454', '11278.00', '2000.00', '20.00', '180.00', '0');
+INSERT INTO `deliveries` VALUES ('10', '39', 'BINUGAO CENTRAL ELEMENTARY SCHOOL, Philippines', '6.974461', '125.47827600000005', '6.973568', '125.475454', '591.00', '2000.00', '20.00', '0.00', '0');
 
 -- ----------------------------
 -- Table structure for products
@@ -126,9 +138,9 @@ CREATE TABLE `products` (
 -- Records of products
 -- ----------------------------
 INSERT INTO `products` VALUES ('16', '', 'Purified Water 5 galloons', '', '100', '', '0', '2017-01-31');
-INSERT INTO `products` VALUES ('17', '', 'Purified Water 350 ml', '', '15', '', '22', '2017-01-31');
-INSERT INTO `products` VALUES ('18', '', 'Purified Water 500 ml', '', '20', '', '13', '2017-01-31');
-INSERT INTO `products` VALUES ('19', '', 'Purified Water 1000 ml', '', '50', '', '8', '2017-01-31');
+INSERT INTO `products` VALUES ('17', '', 'Purified Water 350 ml', '', '15', '', '10', '2017-01-31');
+INSERT INTO `products` VALUES ('18', '', 'Purified Water 500 ml', '', '20', '', '5', '2017-01-31');
+INSERT INTO `products` VALUES ('19', '', 'Purified Water 1000 ml', '', '50', '', '3', '2017-01-31');
 
 -- ----------------------------
 -- Table structure for sales
@@ -145,7 +157,7 @@ CREATE TABLE `sales` (
   `name` varchar(100) NOT NULL,
   `balance` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of sales
@@ -175,6 +187,20 @@ INSERT INTO `sales` VALUES ('22', 'AS-223230', 'Argie', '12/14/2017', 'cash', '1
 INSERT INTO `sales` VALUES ('23', 'AS-223230', 'Argie', '12/14/2017', 'cash', '15', '1111', 'Nelvin Bacoro', null);
 INSERT INTO `sales` VALUES ('24', 'AS-223230', 'Argie', '12/14/2017', 'cash', '15', '1111', 'Nelvin Bacoro', null);
 INSERT INTO `sales` VALUES ('25', 'AS-223230', 'Argie', '12/14/2017', 'cash', '15', '1111', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('26', 'AS-3032332', 'Argie', '12/14/2017', 'cash', '20', '1111', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('27', 'AS-22233', 'Argie', '12/14/2017', 'cash', '15', '1111', 'Toni Fowler (breezy)', null);
+INSERT INTO `sales` VALUES ('28', 'AS-302337', 'Argie', '12/24/2017', 'cash', '40', '200', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('29', 'AS-323757', 'Argie', '12/24/2017', 'cash', '30', '100', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('30', 'AS-333822', 'Argie', '12/24/2017', 'cash', '45', '100', 'Sheena Mae Aragon', null);
+INSERT INTO `sales` VALUES ('31', 'AS-2002033', 'Argie', '12/24/2017', 'cash', '15', '1000', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('32', 'AS-24329', 'Argie', '12/24/2017', 'cash', '15', '1111', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('33', 'AS-24329', 'Argie', '12/24/2017', 'cash', '15', '1111', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('34', 'AS-32023483', 'Argie', '12/24/2017', 'cash', '30', '100', 'Christian Alfred Jagape', null);
+INSERT INTO `sales` VALUES ('35', 'AS-30320232', 'Argie', '12/24/2017', 'cash', '40', '200', 'Sheena Mae Aragon', null);
+INSERT INTO `sales` VALUES ('36', 'AS-2833302', 'Argie', '01/12/2018', 'cash', '20', '100', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('37', 'AS-2027363', 'Argie', '01/12/2018', 'cash', '50', '500', 'Christian Alfred Jagape', null);
+INSERT INTO `sales` VALUES ('38', 'AS-2023037', 'Argie', '01/12/2018', 'cash', '230', '5000', 'Nelvin Bacoro', null);
+INSERT INTO `sales` VALUES ('39', 'AS-0022322', 'Argie', '01/12/2018', 'credit', '20', '', 'Nelvin Bacoro', '10');
 
 -- ----------------------------
 -- Table structure for sales_order
@@ -190,7 +216,7 @@ CREATE TABLE `sales_order` (
   `price` varchar(100) NOT NULL,
   `discount` varchar(100) NOT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of sales_order
@@ -218,6 +244,20 @@ INSERT INTO `sales_order` VALUES ('21', 'AS-30230', 'Purified Water 5 galloons',
 INSERT INTO `sales_order` VALUES ('22', 'AS-39032203', 'Purified Water 5 galloons', '1', '100', 'Purified Water 5 galloons', '100', '');
 INSERT INTO `sales_order` VALUES ('23', 'AS-30033223', 'Purified Water 5 galloons', '1', '100', 'Purified Water 5 galloons', '100', '');
 INSERT INTO `sales_order` VALUES ('24', 'AS-223230', 'Purified Water 350 ml', '1', '15', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('25', 'AS-3032332', 'Purified Water 500 ml', '1', '20', 'Purified Water 500 ml', '20', '');
+INSERT INTO `sales_order` VALUES ('26', 'AS-22233', 'Purified Water 350 ml', '1', '15', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('27', 'AS-302337', 'Purified Water 500 ml', '2', '40', 'Purified Water 500 ml', '20', '');
+INSERT INTO `sales_order` VALUES ('28', 'AS-323757', 'Purified Water 350 ml', '2', '30', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('29', 'AS-333822', 'Purified Water 350 ml', '3', '45', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('30', 'AS-2002033', 'Purified Water 350 ml', '1', '15', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('31', 'AS-24329', 'Purified Water 350 ml', '1', '15', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('32', 'AS-32023483', 'Purified Water 350 ml', '2', '30', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('33', 'AS-30320232', 'Purified Water 500 ml', '2', '40', 'Purified Water 500 ml', '20', '');
+INSERT INTO `sales_order` VALUES ('35', 'AS-2833302', 'Purified Water 500 ml', '1', '20', 'Purified Water 500 ml', '20', '');
+INSERT INTO `sales_order` VALUES ('36', 'AS-2027363', 'Purified Water 1000 ml', '1', '50', 'Purified Water 1000 ml', '50', '');
+INSERT INTO `sales_order` VALUES ('37', 'AS-2023037', 'Purified Water 350 ml', '2', '30', 'Purified Water 350 ml', '15', '');
+INSERT INTO `sales_order` VALUES ('38', 'AS-2023037', 'Purified Water 1000 ml', '4', '200', 'Purified Water 1000 ml', '50', '');
+INSERT INTO `sales_order` VALUES ('39', 'AS-0022322', 'Purified Water 500 ml', '1', '20', 'Purified Water 500 ml', '20', '');
 
 -- ----------------------------
 -- Table structure for settings
@@ -236,10 +276,10 @@ CREATE TABLE `settings` (
 -- Records of settings
 -- ----------------------------
 INSERT INTO `settings` VALUES ('1', 'site_name', 'Site Name', 'AQR', '0');
-INSERT INTO `settings` VALUES ('2', 'free_distance', 'Free Distance', '1000', '0');
-INSERT INTO `settings` VALUES ('3', 'delivery_rate', 'Delivery Rate', '10.00', '0');
-INSERT INTO `settings` VALUES ('4', 'office_location_lat', 'Office Location Latitude', '7.01506289', '0');
-INSERT INTO `settings` VALUES ('5', 'office_location_lng', 'Office Location Longitude', '125.49776226', '0');
+INSERT INTO `settings` VALUES ('2', 'free_distance', 'Free Distance', '2000', '0');
+INSERT INTO `settings` VALUES ('3', 'delivery_rate', 'Delivery Rate', '20.00', '0');
+INSERT INTO `settings` VALUES ('4', 'office_location_lat', 'Office Location Latitude', '6.973568', '0');
+INSERT INTO `settings` VALUES ('5', 'office_location_lng', 'Office Location Longitude', '125.475454', '0');
 
 -- ----------------------------
 -- Table structure for user
