@@ -1,5 +1,5 @@
 <?php
-	//Start session
+	//Start session test commit
 	session_start();
 	
 	//Unset the variables stored in session
