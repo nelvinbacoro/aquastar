@@ -1,5 +1,5 @@
 <?php
-   $db = new mysqli('localhost', 'root' ,'root', 'saless');
+   $db = new mysqli('localhost', 'root', '', 'saless');
 	if(!$db) {
 	
 		echo 'Could not connect to the database.';
@@ -10,7 +10,8 @@
 			
 			if(strlen($queryString) >0) {
 				$sddsdsd='credit';
-				$query = $db->query("SELECT *  FROM sales WHERE type='$sddsdsd' AND name LIKE '$queryString%' LIMIT 10");
+				$query = $db->query("SELECT *  FROM sales WHERE type='$sddsdsd' AND name LIKE '%$queryString%' LIMIT 10");
+				
 				if($query) {
 				echo '<ul>';
 					while ($result = $query ->fetch_object()) {

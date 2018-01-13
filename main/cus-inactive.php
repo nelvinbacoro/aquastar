@@ -81,7 +81,7 @@ body {
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
-			<tr class="record <?php echo ($row['status'] == 0) ? "inactive":""; ?>">
+			<tr class="record <?php echo ($row['status'] == 0) ? "":""; ?>">
 			
 			<td><?php echo $row['customer_Fname']; ?> <?php echo $row['customer_name']; ?></td>
 			
