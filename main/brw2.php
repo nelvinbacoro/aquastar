@@ -90,7 +90,7 @@ body {
 &nbsp
 &nbsp
 <div class="btn-group btn-group-sm">
-	 	<a class="btn btn-default btn-lg" rel="facebox" href="brw.php" style="float: none;">---ADD---</a>
+	 	<a class="btn btn-default btn-lg" rel="facebox" href="brw.php" style="float: none;">ADD</a>
 	 	</div>
 <table id="resultTable" data-responsive="table">
 	<thead>

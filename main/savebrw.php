@@ -14,7 +14,7 @@ if($id > 0){
     $q = $db->prepare($sql);
     $q->execute(array(':b'=>$b,':c'=>$c,':f'=>$f, ':id'=>$id));
 }else{
-    $sql = "INSERT INTO borrow (customer_name,gal_qty,dateB,daeR) VALUES (:a,:b,:c,:f)";
+    $sql = "INSERT INTO borrow (customer_id,gal_qty,dateB,daeR) VALUES (:a,:b,:c,:f)";
     $q = $db->prepare($sql);
     $q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':f'=>$f));
 }

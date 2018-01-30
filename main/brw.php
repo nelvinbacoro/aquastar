@@ -17,10 +17,10 @@
 <center>
 Customer Name
 <br>
-<select name="customer_name" style="width: 157px;" disabled="disabled">
+<select name="customer_name" style="width: 157px;">
 <option>--select customer--</option>
 	<?php
-	    $result = $db->prepare("SELECT * FROM customer");
+	    $result = $db->prepare("SELECT * FROM customer where status='1'");
 		$result->bindParam(':userid', $res);
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
