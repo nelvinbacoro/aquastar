@@ -122,7 +122,7 @@ background-repeat:no-repeat;
 		for($i=0; $row = $result->fetch(); $i++){
 	?>
 		
-		<option value="<?php echo $row['customer_name']; ?>"><?php echo $row['customer_Fname']; ?> <?php echo $row['customer_name']; ?></option>
+		<option value="<?php echo $row['customer_name']; ?>"> <?php echo $row['customer_Fname']; ?> <?php echo $row['customer_name']; ?></option>
 	<?php
 	}
 	?>

@@ -70,7 +70,7 @@ Collection Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_
 			<th width="17%"> Transaction ID </th>
 			<th width="8%"> Date </th>
 			
-			<th width="20%"> Invoice Number </th>
+			<th width="20%"> Name </th>
 			<th width="10%"> Amount </th>
 			<th width="10%"> Remarks </th>
 		</tr>

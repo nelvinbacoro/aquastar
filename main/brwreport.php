@@ -48,6 +48,7 @@ body {
 		
 		<br>
 <a href="index.php" class="btn btn-success btn-xs-2x" style="float: none;">Back</a>
+ <a class="btn btn-default btn-xs-2x" href="javascript:Clickheretoprint()">Print</a>
 <br>
 <br>
 <a href="brwreport.php" class="btn btn-default" style="float: right;" disabled>DISBURSEMENT report</a>

@@ -178,7 +178,7 @@ var info = 'id=' + del_id;
 
  $.ajax({
    type: "GET",
-   url: "deleteproduct.php",
+   url: "deletereport.php",
    data: info,
    success: function(){
    

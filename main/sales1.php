@@ -55,7 +55,7 @@ AQR
 <nav>
 <div class="nav-wrapper">
 <center>
-<a rel="facebox" href="#"><img src="logo.png" style="width:63px; height:63px" /></a>
+<a href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 <a href="../index.php"></a>
 </div>

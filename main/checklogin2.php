@@ -7,13 +7,13 @@ $mypassword=$_POST['password'];
 // To protect MySQL injection 
 $myusername = stripslashes($myusername);
 $mypassword = stripslashes($mypassword);
-$myusername = mysqli_real_escape_string($conn, $myusername);
-$mypassword = mysqli_real_escape_string($conn, $mypassword);
+$myusername = mysql_real_escape_string($myusername);
+$mypassword = mysql_real_escape_string($mypassword);
 
 $sql="SELECT * FROM user2 WHERE username='$myusername' and password='$mypassword'";
-$result=mysqli_query($conn, $sql);
+$result=mysql_query($sql);
 // Mysql_num_row is counting table row
-$count=mysqli_num_rows($result);
+$count=mysql_num_rows($result);
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count==1){
 	session_start();

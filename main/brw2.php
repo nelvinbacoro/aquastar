@@ -1,3 +1,27 @@
+<?php
+	require_once('auth.php');
+?>
+<?php
+function createRandomPassword() {
+	$chars = "003232303232023232023456789";
+	srand((double)microtime()*1000000);
+	$i = 0;
+	$pass = '' ;
+	while ($i <= 7) {
+
+		$num = rand() % 33;
+
+		$tmp = substr($chars, $num, 1);
+
+		$pass = $pass . $tmp;
+
+		$i++;
+
+	}
+	return $pass;
+}
+$finalcode='AS-'.createRandomPassword();
+?>
 <html>
 <head>
 <title>
@@ -36,7 +60,7 @@ body {
 <nav>
 <div class="nav-wrapper">
 <center>
-<a rel="" href="#"><img src="logo.png" style="width:63px; height:63px" /></a>
+<a href="#"><img src="aqrlogo.png" style="width:250px; height:60px" /></a>
 </center>
 <a href="../index.php"></a>
 </div>
@@ -52,7 +76,7 @@ body {
 	 	</div>
 		
 		<div class="btn-group btn-group-sm">
-	 	<a class="btn btn-default btn-lg disabled" rel="facebox" href="brw.php" style="float: none;">DISBURSEMENT</a>
+	 	<a class="btn btn-default btn-lg disabled"  style="float: none;">DISBURSEMENT</a>
 	 	</div>
 		<br>
 		<br>
